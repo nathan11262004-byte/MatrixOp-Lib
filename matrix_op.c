@@ -3,31 +3,35 @@
 
 //Addition
 void mat_add(int A[SIZE][SIZE], int B[SIZE][SIZE], int R[SIZE][SIZE]) {
-    for(int i=0;i<SIZE;i++)
-        for(int j=0;j<SIZE;j++)
+	int i,j;
+    for(i=0;i<SIZE;i++)
+        for(j=0;j<SIZE;j++)
             R[i][j] = A[i][j] + B[i][j];
 }
 
 //Subtraction
 void mat_sub(int A[SIZE][SIZE], int B[SIZE][SIZE], int R[SIZE][SIZE]) {
-    for(int i=0;i<SIZE;i++)
-        for(int j=0;j<SIZE;j++)
+	int i,j;
+    for(i=0;i<SIZE;i++)
+        for(j=0;j<SIZE;j++)
             R[i][j] = A[i][j] - B[i][j];
 }
 
 //Element-wise Multiplication
 void mat_elem_mult(int A[SIZE][SIZE], int B[SIZE][SIZE], int R[SIZE][SIZE]) {
-    for(int i=0;i<SIZE;i++)
-        for(int j=0;j<SIZE;j++)
+    int i,j;
+	for(i=0;i<SIZE;i++)
+        for(j=0;j<SIZE;j++)
             R[i][j] = A[i][j] * B[i][j];
 }
 
 //Matrix Multiplication
 void mat_mult(int A[SIZE][SIZE], int B[SIZE][SIZE], int R[SIZE][SIZE]) {
-    for(int i=0;i<SIZE;i++){
-        for(int j=0;j<SIZE;j++){
+    int i,j,k;
+	for(i=0;i<SIZE;i++){
+        for(j=0;j<SIZE;j++){
             R[i][j] = 0;
-            for(int k=0;k<SIZE;k++)
+            for(k=0;k<SIZE;k++)
                 R[i][j] += A[i][k] * B[k][j];
         }
     }
@@ -35,8 +39,9 @@ void mat_mult(int A[SIZE][SIZE], int B[SIZE][SIZE], int R[SIZE][SIZE]) {
 
 //Transpose
 void mat_transpose(int A[SIZE][SIZE], int R[SIZE][SIZE]) {
-    for(int i=0;i<SIZE;i++)
-        for(int j=0;j<SIZE;j++)
+    int i,j;
+	for(i=0;i<SIZE;i++)
+        for(j=0;j<SIZE;j++)
             R[j][i] = A[i][j];
 }
 
@@ -51,12 +56,13 @@ int mat_det(int A[SIZE][SIZE]) {
 
 //Cofactor(>>Adjoint)
 void mat_cofactor(int A[SIZE][SIZE], int Cof[SIZE][SIZE]) {
-    for(int r=0;r<SIZE;r++){
-        for(int c=0;c<SIZE;c++){
+    int r,c,i,j;
+	for(r=0;r<SIZE;r++){
+        for(c=0;c<SIZE;c++){
             int m[4], idx = 0;
-            for(int i=0;i<SIZE;i++){
+            for(i=0;i<SIZE;i++){
                 if(i==r) continue;
-                for(int j=0;j<SIZE;j++){
+                for(j=0;j<SIZE;j++){
                     if(j==c) continue;
                     m[idx++] = A[i][j];
                 }
@@ -81,25 +87,28 @@ int mat_inverse(int A[SIZE][SIZE], float Inv[SIZE][SIZE]) {
 
     int Adj[SIZE][SIZE];
     mat_adjoint(A, Adj);
-
-    for(int i=0;i<SIZE;i++)
-        for(int j=0;j<SIZE;j++)
+  
+    int i,j;
+    for(i=0;i<SIZE;i++)
+        for(j=0;j<SIZE;j++)
             Inv[i][j] = (float)Adj[i][j] / det;
 
     return 1;
 }
 
 void mat_print_int(int A[SIZE][SIZE]) {
-    for(int i=0;i<SIZE;i++){
-        for(int j=0;j<SIZE;j++)
+    int i,j;
+	for(i=0;i<SIZE;i++){
+        for(j=0;j<SIZE;j++)
             printf("%4d ", A[i][j]);
         printf("\n");
     }
 }
 
 void mat_print_float(float A[SIZE][SIZE]) {
-    for(int i=0;i<SIZE;i++){
-        for(int j=0;j<SIZE;j++)
+    int i,j;
+	for(i=0;i<SIZE;i++){
+        for(j=0;j<SIZE;j++)
             printf("%8.3f ", A[i][j]);
         printf("\n");
     }
